@@ -26,7 +26,6 @@ $(function() {
     });
 
     // 팝업
-    // $('.notice>article').eq(0).find('li').eq(0).on('click')
     $('.modal').on('click', function() {
         $('.popup').show().css('display','flex');
     });
