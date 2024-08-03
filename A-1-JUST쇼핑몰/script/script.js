@@ -1,35 +1,41 @@
 $(function() {
-    $('#gnb').on('mouseenter',function() {
+
+    // 메뉴
+    $('nav>ul>li').on('mouseenter',function() {
         $(this).find('.sub').stop().slideDown(300);
     });
-    $('#gnb').on('mouseleave',function() {
+    $('nav>ul>li').on('mouseleave',function() {
         $(this).find('.sub').stop().slideUp(300);
     });
 
     // 슬라이드 (up / down, left / right)
     const slides = $('.slide_container>ul');
-    function slideMove() {
+    function slide() {
         slides.animate({'top': '-300px'}, 450, function() {
             slides.find('li').eq(0).appendTo(slides);
             slides.css('top', 0);
         })
     }
-    setInterval(slideMove, 3000);
+    setInterval(slide, 3000);
+   // 탭메뉴
+    $(".tabmenu > li").click(function() {
+        $(".tabmenu > li").removeClass("on");
+        $(this).addClass("on");
 
-    // 탭 버튼
-    const tabBtn = $('.notice h2>a');
-    tabBtn.on ('click', function() {
-        tabBtn.removeClass('on');
-        $(this).addClass('on');
-        $('.notice').find('.content').hide();
-        $(this).parent().next().show();
-    });
+        let i = $(this).index();
+        console.log(i);
+        $(".tabcon").hide();
+        $(".tabcon").eq(i).show();
+        return false;
+    })
 
     // 팝업
-    $('.modal').on('click', function() {
-        $('.popup').show().css('display','flex');
-    });
-    $('.popup').find('button').on('click', function() {
-        $('.popup').hide();
+     $(".pp").click(function() {
+        $(".popup").show();
+            return false;
+        })
+
+        $(".close").click(function() {
+            $(".popup").hide();
     })
 });
